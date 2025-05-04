@@ -1,0 +1,346 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #4a89dc;
+    font-size: 2.5rem;
+}
+
+/* Game Container */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .game-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+/* Webcam Container */
+.webcam-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 375px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+#webcam, #overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#webcam {
+    object-fit: cover;
+    transform: scaleX(-1); /* Mirror the webcam */
+}
+
+#overlay {
+    z-index: 10;
+}
+
+/* Game Info */
+.game-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+.target-emoji {
+    text-align: center;
+    padding: 15px;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+}
+
+#emoji-display {
+    font-size: 5rem;
+    margin: 10px 0;
+}
+
+.game-stats {
+    background-color: #4a89dc;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.detection-info {
+    background-color: #f5f7fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex: 1;
+}
+
+#start-btn {
+    background-color: #4cd964;
+    color: white;
+}
+
+#start-btn:hover {
+    background-color: #3cb054;
+}
+
+#play-again-btn {
+    background-color: #4a89dc;
+    color: white;
+}
+
+#play-again-btn:hover {
+    background-color: #3b7dcc;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Instructions */
+.instructions {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h2 {
+    margin-bottom: 10px;
+    color: #4a89dc;
+}
+
+/* Loading Screen */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-container {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    line-height: 1.5;
+}
+
+.loading-container h2 {
+    color: #4a89dc;
+    margin-bottom: 10px;
+}
+
+.loading-container ul {
+    text-align: left;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.loading-container button {
+    background-color: #4a89dc;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.loading-container button:hover {
+    background-color: #3b7dcc;
+}
+
+.emoji-loader {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: pulse 1.5s infinite alternate;
+}
+
+#loading-emoji {
+    display: inline-block;
+    animation: spin-emoji 3s infinite;
+}
+
+.loading-bar {
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-progress {
+    height: 100%;
+    width: 0%;
+    background-color: #4a89dc;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+    animation: progress-animation 2s infinite;
+}
+
+#loading p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+@keyframes spin-emoji {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(0deg); content: "😐"; }
+    30% { content: "😀"; }
+    50% { transform: rotate(0deg); }
+    55% { content: "😢"; }
+    75% { content: "😠"; }
+    95% { content: "😮"; }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+/* Game result animations */
+.correct {
+    animation: pulse-green 1s;
+}
+
+.incorrect {
+    animation: pulse-red 1s;
+}
+
+@keyframes pulse-green {
+    0% { background-color: #4cd964; }
+    50% { background-color: #3cb054; }
+    100% { background-color: #4cd964; }
+}
+
+@keyframes pulse-red {
+    0% { background-color: #ff3b30; }
+    50% { background-color: #d9302c; }
+    100% { background-color: #ff3b30; }
+}
+
+@keyframes progress-animation {
+    0% { width: 0%; }
+    50% { width: 70%; }
+    100% { width: 90%; }
+}
+
+/* Game status styles */
+.score-display, .result-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 12px 0;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.score-display {
+    background-color: #f0f8ff;
+    border-left: 5px solid #4a89dc;
+}
+
+.result-display {
+    background-color: #f5f5f5;
+    border-left: 5px solid #666;
+}
+
+/* Countdown animation */
+.countdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.countdown-overlay.active {
+    opacity: 1;
+}
+
+.countdown-number {
+    font-size: 10rem;
+    color: white;
+    font-weight: bold;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0.7; }
+}
