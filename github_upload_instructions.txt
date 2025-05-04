@@ -1,0 +1,17 @@
+# After creating the GitHub repository, run these commands:
+
+# Change the main branch name to 'main' (GitHub standard)
+git branch -M main
+
+# Add the remote GitHub repository URL (replace with your actual GitHub username)
+git remote add origin https://github.com/temamumtaza/MimicTheEmoji.git
+
+# Push your code to GitHub
+git push -u origin main
+
+# If you're prompted for GitHub credentials, you'll need to:
+# 1. Create a personal access token at https://github.com/settings/tokens
+# 2. Use that token as your password when prompted
+
+# Note: If you prefer to use SSH instead of HTTPS, use this command instead:
+# git remote add origin git@github.com:temamumtaza/MimicTheEmoji.git

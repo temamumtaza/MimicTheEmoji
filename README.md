@@ -1,5 +1,7 @@
 # Mimic The Emoji
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Play%20Now-brightgreen?style=for-the-badge&logo=github)](https://temamumtaza.github.io/MimicTheEmoji/)
+
 ## Overview
 Mimic The Emoji is a web-based game that challenges players to mimic facial expressions shown on screen. Using computer vision technology through TensorFlow.js and face-api.js, the game detects the player's facial expressions in real-time via their webcam and matches them against the target emoji.
 
@@ -34,7 +36,13 @@ This project uses:
 
 All processing happens directly in the browser - no server needed!
 
-## Setup Instructions
+## Live Demo
+Try the game instantly through our GitHub Pages hosted demo: [Play Mimic The Emoji](https://temamumtaza.github.io/MimicTheEmoji/)
+
+Just click the link or the badge at the top of this README to play right in your browser without downloading anything!
+
+## Setup Instructions (Local)
+If you prefer to run it locally:
 1. Clone or download this repository
 2. Open `index.html` in a modern web browser (Chrome, Firefox, Edge recommended)
 3. Allow camera access when prompted
