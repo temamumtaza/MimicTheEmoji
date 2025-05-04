@@ -18,6 +18,7 @@ let currentRound = 0;
 let detectionInterval;
 const totalRounds = 5;
 const countdownDuration = 3; // seconds for countdown between rounds
+let usedEmotions = []; // Keep track of used emotions to avoid repetition
 
 // Emotions and Emojis mapping
 const emotionEmojis = {
@@ -224,6 +225,7 @@ function startGame() {
     gameActive = false; // Will be set to true after countdown
     score = 0;
     currentRound = 0;
+    usedEmotions = []; // Reset used emotions tracking
     scoreDisplay.textContent = '0';
     
     // Update UI
@@ -273,17 +275,36 @@ function startRound() {
     // Set game to inactive during countdown
     gameActive = false;
     
-    // Choose random emotion (different from previous)
-    const emotions = Object.keys(emotionEmojis);
+    // Get available emotions for selection
+    const allEmotions = Object.keys(emotionEmojis);
+    
+    // Choose a random emotion that hasn't been used recently
     let newEmotion;
     
-    do {
-        const randomIndex = Math.floor(Math.random() * emotions.length);
-        newEmotion = emotions[randomIndex];
-    } while (newEmotion === targetEmotion && emotions.length > 1);
+    // If we've used all emotions, reset the tracking
+    if (usedEmotions.length >= allEmotions.length - 1) {
+        // Keep the last used emotion to avoid immediate repetition
+        const lastEmotion = usedEmotions[usedEmotions.length - 1];
+        usedEmotions = [lastEmotion];
+    }
     
+    // Filter out emotions we've already used
+    const availableEmotions = allEmotions.filter(emotion => !usedEmotions.includes(emotion));
+    
+    // Select a random emotion from available ones
+    const randomIndex = Math.floor(Math.random() * availableEmotions.length);
+    newEmotion = availableEmotions[randomIndex];
+    
+    // Add this emotion to used emotions
+    usedEmotions.push(newEmotion);
+    
+    // Update target emotion and display
     targetEmotion = newEmotion;
     emojiDisplay.textContent = emotionEmojis[targetEmotion];
+    
+    // Log for debugging
+    console.log(`Round ${currentRound + 1}: Selected ${targetEmotion} from available: ${availableEmotions.join(', ')}`);
+    console.log(`Used emotions so far: ${usedEmotions.join(', ')}`);
     
     // Reset result
     resultDisplay.textContent = 'Get ready...';
